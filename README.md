@@ -3,7 +3,7 @@
 # Cronograma
 
 # Descripcion De Las Actividades
-# FideMotor App:
+## FideMotor App:
 ## Registro de Cuenta Cliente: 
 El usuario proporciona su información básica, que se envía al servidor para registrar un nuevo usuario. El servidor verifica si ya existe un usuario con la misma información y devuelve una respuesta de confirmación o error.
 
@@ -27,7 +27,7 @@ Dentro de este requerimiento los clientes son capaces de calificar los vehículo
 
 ## Editar Datos:
  El usuario podrá modificar ciertos datos de su perfil.
-# FideMotor Business:
+## FideMotor Business:
 ## Visualizar Compras de Clientes:
  Se estará realizando un programa donde se puedan ver todas las compras realizadas por los clientes y para que de esta manera se pueda acceder a los detalles de cada compra.
 
@@ -37,7 +37,7 @@ Se puede dentro de esta se podrá cambiar el estado de las compras.
 ## Editar Inventario de Vehículos:
  Se pueden agregar, eliminar y editar vehículos en el inventario. Cada vehículo debe tener marca, año, modelo y precio.
 
-# Requerimientos Técnicos:
+## Requerimientos Técnicos:
 
 ## Multihilos:
  La aplicación debe soportar múltiples sesiones activas de clientes y manejar múltiples solicitudes sin problemas.
