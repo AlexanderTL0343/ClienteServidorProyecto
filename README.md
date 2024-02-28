@@ -4,14 +4,13 @@
 |SEMANA DE TRABAJO|QUE SE HACE|
 |-----------------|-----------|
 |Semana 7|Alexander creo el repositorio de git,se crearon las primeras ideas para el diagrama de clases y el diagrama de flujo por parte de Santiago,Ignacio Desgloso los requerimientos y Alexander los agrego al README,Anthony hizo la descripcion de las actividadesy Aleander las agrego al README,Santiago ideo la descripcion de la solucion del problema y lo agrego al README y por ultimo se entrego el Primer avance del proyecto.
-|Semana 8|Se piensa arrancar con 
-|Semana 9|
-|Semana 10|
-|Semana 11|
-|Semana 12|
-|Semana 13|
-|Semana 14|
-|Semana 15|
+|Semana 8|Se piensa arrancar con la progamacion del codigo todos en conjunto mas que todo en la parte del FideMotor app
+|Semana 9|Se continuara con la programacion del FideMotor app y se espera terminarlo
+|Semana 10|Se arrancara con la programacion del FideMotor Business
+|Semana 11|Se continuara con la progamacion del FideMotor Business y se empezara a trabajar en la interfaz grafica esperando que el FideMotor Business este terminado
+|Semana 12|Se terminara el proyecto en su totalidad y se dara el ultimo Testing antes de entregar el Avance Final
+|Semana 14|Se expondra el proyecto durante la clase 
+|Semana 15|Se expondra el proyecto durante la clase 
 # Descripcion De Las Actividades
 ## FideMotor App:
 ## Registro de Cuenta Cliente: 
