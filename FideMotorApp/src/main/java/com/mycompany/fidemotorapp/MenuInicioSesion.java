@@ -2,10 +2,7 @@ package com.mycompany.fidemotorapp;
 
 import java.io.DataInputStream;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class MenuInicioSesion {
@@ -59,10 +56,10 @@ public class MenuInicioSesion {
             ));
             switch (opcion) {
                 case 1:
-                    // Código para visualizar compras realizadas
+                    visualizarCompras();
                     break;
                 case 2:
-                    // Código para visualizar vehículos
+                    visualizarVehiculos();
                     break;
                 case 3:
                     String campoModificar = JOptionPane.showInputDialog(null,
@@ -122,5 +119,17 @@ public class MenuInicioSesion {
                     break;
             }
         }
+    }
+
+    // Método para visualizar compras realizadas
+    private void visualizarCompras() {
+
+        JOptionPane.showMessageDialog(null, "Visualizando compras realizadas");
+    }
+
+    // Método para visualizar vehículos
+    private void visualizarVehiculos() {
+
+        JOptionPane.showMessageDialog(null, "Visualizando vehículos");
     }
 }
