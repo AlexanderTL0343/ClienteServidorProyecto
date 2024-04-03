@@ -21,9 +21,41 @@ public class MenuInicioSesion {
     }
 
     Usuarios sesion = new Usuarios();
+    
+    private static final String Archivo ="ProyectoFideMotorApp.txt";
+
+    public boolean Validar(String UserName, String Clave) {
+        
+        boolean aux = false;
+        
+        try (DataInputStream archivoLectura = new DataInputStream(new FileInputStream(Archivo))) {
+            while (true) {
+                String Identificación = archivoLectura.readUTF();
+                String NombreDelUsuario = archivoLectura.readUTF();
+                String ApellidosDelUsuario = archivoLectura.readUTF();
+                String NúmeroTelefónico = archivoLectura.readUTF();
+                String Dirección = archivoLectura.readUTF();
+                String CorreoElectronico = archivoLectura.readUTF();
+                String Sexo = archivoLectura.readUTF();
+                String FechaDeNacimiento = archivoLectura.readUTF();
+                String Nacionalidad = archivoLectura.readUTF();
+                String Contraseña = archivoLectura.readUTF();
+
+                if (NombreDelUsuario.equals(UserName) && Contraseña.equals(Clave)) {
+                    aux = true;
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error al validar contraseña: " + e.getMessage());
+        }
+
+        return aux;
+    }
+
 
     public void mostrarMenu() {
-        while (opcion != 6) {
+        while (opcion != 5) {
             opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "Inicio Sesion:\n"
                     + "1 - Visualizar compras realizadas\n"
                     + "2 - Visualizar vehículos\n"
