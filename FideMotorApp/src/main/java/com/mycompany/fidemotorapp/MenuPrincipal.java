@@ -36,7 +36,14 @@ public class MenuPrincipal {
 
                     break;
                 case 2:
+                    String UserName=JOptionPane.showInputDialog("Ingrese su nombre de usuario:");
+                    String Clave = JOptionPane.showInputDialog("Ingrese su contraseña:");
+                      if (MIS.Validar(UserName, Clave)) {
+                    JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso");
                     MIS.mostrarMenu();
+                    } else {
+                    JOptionPane.showMessageDialog(null,"Error de inicio de sesión");
+                }
 
                     break;
                 case 3:
