@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Venta PC
+ * @author Ignacio
  */
 public class DatabaseManager {
 
