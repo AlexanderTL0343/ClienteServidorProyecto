@@ -5,7 +5,7 @@
 package com.mycompany.fidemotorbusiness;
 
 import java.util.LinkedList;
-import javax.swing.JOptionPane;
+import Cliente.ServicioCliente;
 
 /**
  *
@@ -14,67 +14,154 @@ import javax.swing.JOptionPane;
 public class Menu {
 
     private LinkedList<Vehiculo> inventario = new LinkedList<>();
+    private Vehiculo current = null;
+    private int currentID = 0;
+    private int maxInv;
+    
     private LinkedList<Compra> compras = new LinkedList<>();
+    private Compra currentC = null;
+    private int currentComID;
+    private int maxC;
+    
+    private LinkedList<Usuario> usuarios = new LinkedList<>();
 
-    public void anadirVehiculo(String tipo, String marca, String ano, String modelo, String precio) {
-        if (tipo.equals("3") || tipo.equals("2") || tipo.equals("1")) {
+    
+    public void actualizarUsers(){
+        usuarios.clear();
+        ServicioCliente c = new ServicioCliente("6");
+        String s = c.getRespuesta();
+        String[] x = s.split("##");
+        for (int i = 0; i < x.length; i++) {
+            String[] y = x[i].split("#");
+            
+            Usuario u = new Usuario(y[0], y[1], y[2], y[3]);
+            usuarios.add(u);
+        }
+    }
+    
+    
+    public void actualizarCompras(){
+        compras.clear();
+        ServicioCliente c = new ServicioCliente("2");
+        String s = c.getRespuesta();
+        String[] x = s.split("##");
+        
+        for (int i = 0; i < x.length; i++) {
+            String[] y = x[i].split("#");
+            
+            Compra com = new Compra(y[0], y[1], y[2], y[3]);
+            compras.add(com);
+        }
+        
+        currentC = compras.getFirst();
+        maxC = compras.size()-1;
+        currentComID = 0;
+        
+    }
+    
+    public boolean editarCompra(String mensaje){
+        ServicioCliente c = new ServicioCliente("1##"+currentC.getID()+"#"+mensaje);
+        if(c.getRespuesta().equals("false")){
+            return false;
+        }else{
+            return true;
+        }
+    }
+    
+    public void cambiarCurrentCom(Boolean b){
+        if(b&&currentComID!=0){
+            currentComID--;
+            currentC=compras.get(currentComID);
+        }else if(b==false&&currentComID!=maxInv){
+            currentComID++;
+            currentC=compras.get(currentComID);
+        }
+    }
+    
+    public void actualizarInventario(){
+        inventario.clear();
+        ServicioCliente c = new ServicioCliente("D");
+        String s = c.getRespuesta();
+        String[] x = s.split("##");
+        
+        for (int i = 0; i < x.length; i++) {
+            String[] y = x[i].split("#");
+            
+            Vehiculo v = new Vehiculo(Integer.parseInt(y[0]), y[1], y[2], y[3], y[4], y[5]);
+            inventario.add(v);
+        }
+        
+        current = inventario.getFirst();
+        maxInv = inventario.size()-1;
+        currentID = 0;
+    }
+    
+    public void cambiarCurrentInv(Boolean b){
+        if(b&&currentID!=0){
+            currentID--;
+            current=inventario.get(currentID);
+        }else if(b==false&&currentID!=maxInv){
+            currentID++;
+            current=inventario.get(currentID);
+        }
+    }
+    
+    public boolean anadirVehiculo(String mensaje){
+        ServicioCliente c = new ServicioCliente("3##"+mensaje);
+        if(c.getRespuesta().equals("false")){
+            return false;
+        }else{
+            return true;
+        }
+    }
 
-            try {
-                int a = Integer.parseInt(ano);
-                double p = Double.parseDouble(precio);
-
-                if (tipo.equals("1")) {
-                    Vehiculo v = new Automovil(marca, a, modelo, p);
-                    inventario.add(v);
-                } else if (tipo.equals("2")) {
-                    Vehiculo v = new Motocicleta(marca, a, modelo, p);
-                    inventario.add(v);
-                } else {
-                    Vehiculo v = new Camion(marca, a, modelo, p);
-                    inventario.add(v);
-                }
-
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Numero no valido ingresado");
-            }
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Ingrese un tipo de vehículo válido");
+    public boolean editarVehiculo(String mensaje) {
+        ServicioCliente c = new ServicioCliente("5##"+current.getId()+"#"+mensaje);
+        if(c.getRespuesta().equals("false")){
+            return false;
+        }else{
+            return true;
         }
 
     }
+    
+    public boolean eliminarVehiculo(){
+        ServicioCliente c = new ServicioCliente("4##"+current.getId());
+        if(c.getRespuesta().equals("false")){
+            return false;
+        }else{
+            return true;
+        }
+    }
+    
 
-    public void editarVehiculo() {
-        String p = "";
-        int c = 1;
+    public String getUserInfoC(){
+        String r = "No hay usuario";
+        for (Usuario user : usuarios) {
+            if(user.getID().equals(currentC.getUser())){
+                r = user.getInfo();
+            }
+        }
+        return r;
+    }
+    
+    public String getVehicleInfoC(){
+        String r="Vehiculo eliminado";
         for (Vehiculo vehiculo : inventario) {
-            p = p + c + ". " + vehiculo.getMarca() + " " + vehiculo.getModelo() + " " + vehiculo.getAno() + " " + vehiculo.getPrecio() + "\n";
-            c++;
-        }
-
-        if (p == "") {
-            System.out.println("Lista Vacia");
-        } else {
-            System.out.println(p);
-            int co = 1;
-            int s = Integer.parseInt(JOptionPane.showInputDialog("Introduzca el vehiculo a editar"));
-            Vehiculo editar = null;
-            for (Vehiculo vehiculo : inventario) {
-                if (s == co) {
-                    editar = vehiculo;
-                }
-                co++;
-
+            String vid = ""+vehiculo.getId();
+            if(vid.equals(currentC.getVe())){
+                r=vehiculo.getInfo();
             }
-            if (editar!=null) {
-                editar.setAno(2003);
-                editar.setMarca("Honda");
-                editar.setModelo("Honda");
-                editar.setPrecio(34.2);
-            }
-
         }
-
+        return r;
+    }
+    
+    public String getEstado(){
+        return currentC.getEstado();
+    }
+    
+    public Vehiculo getCurrent(){
+        return current;
     }
 
 }

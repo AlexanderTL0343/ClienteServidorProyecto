@@ -8,11 +8,32 @@ package com.mycompany.fidemotorbusiness;
  *
  * @author Venta PC
  */
-public abstract class Vehiculo {
+public class Vehiculo {
+    private int id;
     private String marca;
-    private int ano;
+    private String ano;
     private String modelo;
-    private double precio;
+    private String precio;
+    private String tipo;
+
+
+    public Vehiculo(int id, String tipo, String marca, String ano, String modelo, String precio) {
+        this.id = id;
+        this.tipo = tipo;
+        this.marca = marca;
+        this.ano = ano;
+        this.modelo = modelo;
+        this.precio = precio;
+        
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getMarca() {
         return marca;
@@ -22,11 +43,11 @@ public abstract class Vehiculo {
         this.marca = marca;
     }
 
-    public int getAno() {
+    public String getAno() {
         return ano;
     }
 
-    public void setAno(int ano) {
+    public void setAno(String ano) {
         this.ano = ano;
     }
 
@@ -38,13 +59,33 @@ public abstract class Vehiculo {
         this.modelo = modelo;
     }
 
-    public double getPrecio() {
+    public String getPrecio() {
         return precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(String precio) {
         this.precio = precio;
     }
+
+    public String getTipo() {
+        if(tipo.equals("1")){
+            return "Automovil";
+        }else if(tipo.equals("2")){
+            return "Motocicleta";
+        }else{
+            return "camion";
+        }
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
+    public String getInfo(){
+        return marca+" "+modelo+" "+ano+" $"+precio;
+    }
+
+    
     
     
     
