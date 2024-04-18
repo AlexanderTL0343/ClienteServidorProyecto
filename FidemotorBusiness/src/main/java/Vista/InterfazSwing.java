@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author Venta PC
+ * @author alext
  */
 public class InterfazSwing {
 
