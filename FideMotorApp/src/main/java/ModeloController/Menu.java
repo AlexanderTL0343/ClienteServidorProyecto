@@ -29,6 +29,7 @@ public class Menu {
         compras.clear();
         ServicioCliente c = new ServicioCliente("F##"+user.getID());
         String s = c.getRespuesta();
+        System.out.println(s);
         String[] x = s.split("##");
         
         for (int i = 0; i < x.length; i++) {
@@ -39,7 +40,7 @@ public class Menu {
         }
         
         currentC = compras.getFirst();
-        maxC = compras.size()-1;
+        maxC = compras.size();
         currentComID = 0;
         
     }
@@ -47,10 +48,14 @@ public class Menu {
         if(b&&currentComID!=0){
             currentComID--;
             currentC=compras.get(currentComID);
-        }else if(b==false&&currentComID!=maxInv){
+        }else if(b==false&&currentComID!=maxC-1){
             currentComID++;
             currentC=compras.get(currentComID);
         }
+    }
+    
+    public Usuario getUser(){
+        return user;
     }
     
     public String getUserInfoC(){
@@ -82,6 +87,7 @@ public class Menu {
         inventario.clear();
         ServicioCliente c = new ServicioCliente("D");
         String s = c.getRespuesta();
+        System.out.println(s);
         String[] x = s.split("##");
         
         for (int i = 0; i < x.length; i++) {
@@ -92,7 +98,7 @@ public class Menu {
         }
         
         current = inventario.getFirst();
-        maxInv = inventario.size()-1;
+        maxInv = inventario.size();
         currentID = 0;
     }
     
@@ -100,7 +106,7 @@ public class Menu {
         if(b&&currentID!=0){
             currentID--;
             current=inventario.get(currentID);
-        }else if(b==false&&currentID!=maxInv){
+        }else if(b==false&&currentID!=maxInv-1){
             currentID++;
             current=inventario.get(currentID);
         }
@@ -124,5 +130,40 @@ public class Menu {
             return true;
         }
 
+    }
+    
+    public void actalizarInfoUsuario(String mensaje){
+        ServicioCliente c = new ServicioCliente("C##"+user.getID()+"#"+mensaje);
+        System.out.println(c.getRespuesta());
+        
+    }
+    
+    public void actuatilzarCurrentUser(int x,String s){
+        switch (x) {
+            case 1:
+                user.setNombre(s);
+                break;
+            case 2:
+                user.setApellidos(s);
+                break;
+            case 3:
+                user.setTelefono(s);
+                break;
+            default:
+                user.setDireccion(s);
+                break;
+        }
+        
+        
+        
+    }
+    
+    public void registrarUsuario(String mensaje){
+        ServicioCliente c = new ServicioCliente("A##"+mensaje);
+        String id = c.getRespuesta();
+        String[] p = mensaje.split("#");
+        System.out.println(id);
+        user = new Usuario(id, p[0], p[1], p[2], p[4], p[5], p[6], p[7], p[8], p[9]);
+        
     }
 }

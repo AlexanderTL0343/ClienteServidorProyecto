@@ -42,4 +42,42 @@ public class Usuario {
     public String getID(){
         return Id;
     }
+
+    public String getNombre() {
+        return Nombre;
+    }
+
+    public String getApellidos() {
+        return Apellidos;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
+    }
+
+    public void setApellidos(String Apellidos) {
+        this.Apellidos = Apellidos;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    
+    
+    
+    
+    
 }

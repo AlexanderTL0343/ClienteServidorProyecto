@@ -8,7 +8,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class View {
@@ -29,6 +28,30 @@ public class View {
     JTextField userTxT;
     JTextField passTxT;
     JButton acceptLog;
+    //RegisterScreen
+    JPanel registerScreen;
+    JButton aceptarRegistrar;
+    JTextField nom;
+    JTextField ape;
+    JTextField ced;
+    JTextField cont;
+    JTextField tel;
+    JTextField dir;
+    JTextField sex;
+    JTextField anio;
+    JTextField nac;
+    JTextField email;
+    JLabel Lnom;
+    JLabel Lape;
+    JLabel Lced;
+    JLabel Lcont;
+    JLabel Ltel;
+    JLabel Ldir;
+    JLabel Lsex;
+    JLabel Lanio;
+    JLabel Lnac;
+    JLabel Lemail;
+
     //mainScreen
     JPanel mainScreen;
     JButton infoBtn;
@@ -54,8 +77,7 @@ public class View {
     JButton sigComprar;
     //historyScreen
     JPanel historyScreen;
-    
-    JPanel compras;
+
     JLabel estadoLbl;
     JLabel userInfoLbl;
     JLabel vehiInfoLbl;
@@ -82,6 +104,30 @@ public class View {
         userTxT = new JTextField();
         passTxT = new JTextField();
         acceptLog = new JButton("Aceptar");
+
+        //register screen
+        registerScreen = new JPanel();
+        aceptarRegistrar = new JButton("Registrarse");
+        nom = new JTextField();
+        ape = new JTextField();
+        ced = new JTextField();
+        cont = new JTextField();
+        tel = new JTextField();
+        dir = new JTextField();
+        sex = new JTextField();
+        anio = new JTextField();
+        nac = new JTextField();
+        email = new JTextField();
+        Lnom = new JLabel("Nombre:");
+        Lape = new JLabel("Apellidos:");
+        Lced = new JLabel("Cedula:");
+        Lcont = new JLabel("Contraseña:");
+        Ltel = new JLabel("Telefono");
+        Ldir = new JLabel("Direccion");
+        Lsex = new JLabel("1.Masculino 2.Femenino 3.No decir");
+        Lanio = new JLabel("Año nacimiento:");
+        Lnac = new JLabel("Nacionalidad");
+        Lemail = new JLabel("Email:");
 
         //mainScreen
         mainScreen = new JPanel();
@@ -168,6 +214,15 @@ public class View {
             }
         });
         registrarse.setBounds(450, 350, 100, 50);
+        registrarse.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                frame.remove(inicio);
+                frame.add(registerScreen);
+                frame.setVisible(true);
+            }
+        });
 
         inicio.add(login);
         inicio.add(registrarse);
@@ -181,7 +236,7 @@ public class View {
         acceptLog.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                menu.initUserLogin(userTxT.getText()+"#"+passTxT.getText());
+                menu.initUserLogin(userTxT.getText() + "#" + passTxT.getText());
                 frame.setVisible(false);
                 frame.remove(loginScreen);
                 frame.add(mainScreen);
@@ -192,6 +247,68 @@ public class View {
         loginScreen.add(userTxT);
         loginScreen.add(passTxT);
         loginScreen.add(acceptLog);
+        
+        //registerscreen
+        registerScreen.setLayout(null);
+        
+        aceptarRegistrar.setBounds(750, 450, 200, 100);
+        aceptarRegistrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String m = nom.getText()+"#"+ape.getText()+"#"+ced.getText()+"#"+cont.getText()+"#"+tel.getText()+"#"+dir.getText()+"#"+sex.getText()+"#"+anio.getText()+"#"+nac.getText()+"#"+email.getText();
+                menu.registrarUsuario(m);
+                
+                frame.setVisible(false);
+                frame.remove(registerScreen);
+                frame.add(mainScreen);
+                frame.setVisible(true);
+            }
+        });
+        
+        nom.setBounds(300, 0, 300, 30);
+        ape.setBounds(300, 40, 300, 30);
+        ced.setBounds(300, 80, 300, 30);
+        cont.setBounds(300, 120, 300, 30);
+        tel.setBounds(300, 160, 300, 30);
+        dir.setBounds(300, 200, 300, 30);
+        sex.setBounds(300, 240, 300, 30);
+        anio.setBounds(300, 280, 300, 30);
+        nac.setBounds(300, 320, 300, 30);
+        email.setBounds(300, 360, 300, 30);
+        
+        Lnom.setBounds(50, 0, 300, 30);
+        Lape.setBounds(50, 40, 300, 30);
+        Lced.setBounds(50, 80, 300, 30);
+        Lcont.setBounds(50, 120, 300, 30);
+        Ltel.setBounds(50, 160, 300, 30);
+        Ldir.setBounds(50, 200, 300, 30);
+        Lsex.setBounds(50, 240, 300, 30);
+        Lanio.setBounds(50, 280, 300, 30);
+        Lnac.setBounds(50, 320, 300, 30);
+        Lemail.setBounds(50, 360, 300, 30);
+        
+        registerScreen.add(aceptarRegistrar);
+        registerScreen.add(nom);
+        registerScreen.add(ape);
+        registerScreen.add(ced);
+        registerScreen.add(cont);
+        registerScreen.add(tel);
+        registerScreen.add(dir);
+        registerScreen.add(sex);
+        registerScreen.add(anio);
+        registerScreen.add(nac);
+        registerScreen.add(email);
+        registerScreen.add(Lnom);
+        registerScreen.add(Lape);
+        registerScreen.add(Lced);
+        registerScreen.add(Lcont);
+        registerScreen.add(Ltel);
+        registerScreen.add(Ldir);
+        registerScreen.add(Lsex);
+        registerScreen.add(Lanio);
+        registerScreen.add(Lnac);
+        registerScreen.add(Lemail);
+
 
         //mainScreen
         mainScreen.setLayout(null);
@@ -201,14 +318,14 @@ public class View {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.setVisible(false);
+                actUsInf();
                 frame.remove(mainScreen);
                 frame.add(infoScreen);
                 frame.setVisible(true);
             }
         });
         comprarBtn.setBounds(250, 450, 200, 100);
-        
-        
+
         comprarBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -216,6 +333,7 @@ public class View {
                 frame.setVisible(false);
                 frame.remove(mainScreen);
                 frame.add(buyScreen);
+                actVehi();
                 frame.setVisible(true);
             }
         });
@@ -224,9 +342,11 @@ public class View {
             @Override
             public void actionPerformed(ActionEvent e) {
                 menu.actualizarCompras();
+                menu.actualizarInventario();
                 frame.setVisible(false);
                 frame.remove(mainScreen);
                 frame.add(historyScreen);
+                actCom();
                 frame.setVisible(true);
             }
         });
@@ -251,6 +371,17 @@ public class View {
         infoScreen.setLayout(null);
 
         aceptarInfo.setBounds(450, 450, 200, 100);
+        aceptarInfo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String m = nombreInfoTxt.getText() + "#" + apellidosInfoTxt.getText() + "#" + telefonoInfoTxt.getText() + "#" + direccionInfoTxt.getText();
+                menu.actalizarInfoUsuario(m);
+                menu.actuatilzarCurrentUser(1, nombreInfoTxt.getText());
+                menu.actuatilzarCurrentUser(2, apellidosInfoTxt.getText());
+                menu.actuatilzarCurrentUser(3, telefonoInfoTxt.getText());
+                menu.actuatilzarCurrentUser(4, direccionInfoTxt.getText());
+            }
+        });
         nombreInfoTxt.setBounds(400, 100, 200, 30);
         apellidosInfoTxt.setBounds(400, 150, 200, 30);
         telefonoInfoTxt.setBounds(400, 200, 200, 30);
@@ -285,7 +416,7 @@ public class View {
             public void actionPerformed(ActionEvent e) {
                 menu.cambiarCurrentInv(true);
                 actVehi();
-                
+
             }
         });
         sigComprar.setBounds(500, 350, 100, 50);
@@ -293,7 +424,7 @@ public class View {
             @Override
             public void actionPerformed(ActionEvent e) {
                 menu.cambiarCurrentInv(false);
-                actCom();
+                actVehi();
             }
         });
 
@@ -309,9 +440,7 @@ public class View {
 
         //historyScreen
         historyScreen.setLayout(null);
-        
-        
-        
+
         estadoLbl = new JLabel("Estado");
         userInfoLbl = new JLabel("Usuario");
         vehiInfoLbl = new JLabel("Vehiculo");
@@ -343,9 +472,6 @@ public class View {
         historyScreen.add(userInfoLbl);
         historyScreen.add(SigC);
         historyScreen.add(antC);
-        
-        
-        
 
         historyScreen.add(volver3);
 
@@ -358,18 +484,25 @@ public class View {
     public void actInfo() {
 
     }
-    
-    public void actVehi(){
+
+    public void actVehi() {
         tipoLbl.setText(menu.getCurrent().getTipo());
         marcaLbl.setText(menu.getCurrent().getMarca());
         anoLbl.setText(menu.getCurrent().getAno());
         modeloLbl.setText(menu.getCurrent().getModelo());
     }
-    
-    public void actCom(){
+
+    public void actCom() {
         userInfoLbl.setText(menu.getUserInfoC());
         vehiInfoLbl.setText(menu.getVehicleInfoC());
         estadoLbl.setText(menu.getEstado());
+    }
+
+    public void actUsInf() {
+        nombreInfoTxt.setText(menu.getUser().getNombre());
+        apellidosInfoTxt.setText(menu.getUser().getApellidos());
+        telefonoInfoTxt.setText(menu.getUser().getTelefono());
+        direccionInfoTxt.setText(menu.getUser().getDireccion());
     }
 
 }
