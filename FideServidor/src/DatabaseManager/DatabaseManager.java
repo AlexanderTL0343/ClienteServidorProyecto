@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Ignacio
+ * @author Venta PC
  */
 public class DatabaseManager {
 
@@ -51,8 +51,10 @@ public class DatabaseManager {
                     Statement stm4 = c.createStatement();
                     String sql4 = "insert into login(cedula_login,contrasena_login,id_usuario_login) values(" + p[2] + ",'" + p[3] + "'," + rs3.getInt("id_usuario") + ")";
                     stm4.execute(sql4);
+                    String x = "" + rs3.getInt("id_usuario");
                     con.CerrarConeccion();
-                    return "" + rs3.getInt("id_usuario");
+                    return x;
+                    
                 }
 
             } catch (SQLException e) {
@@ -118,17 +120,18 @@ public class DatabaseManager {
             try {
                 String[] p = prompt.split("#");
                 Statement stm = c.createStatement();
-                String sql = "update usuario set nombre_usuario= '" + p[1] + "',apellidos_usuario= '" + p[2] + "', telefono_usuario= " + p[3] + ", direccion_usuario='" + p[4] + "' where id_usuario= " + p[0] + "";
+                System.out.println(prompt);
+                String sql = "update usuario set nombre_usuario='" + p[1] + "', apellidos_usuario='" + p[2] + "', telefono_usuario=" + p[3] + ", direccion_usuario='" + p[4] + "' where id_usuario= " + p[0] + "";
                 stm.executeUpdate(sql);
                 con.CerrarConeccion();
                 return "true";
             } catch (SQLException e) {
                 System.out.println(" error catch editar usuario " + e.getMessage());
                 con.CerrarConeccion();
-                return "false";
+                return "false" ;
             }
         } else {
-            return "false";
+            return "false coneccion nula";
         }
     }
 
